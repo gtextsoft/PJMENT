@@ -274,7 +274,11 @@
         <span class="urgency__sep">:</span>
         <div class="urgency__unit"><span class="urgency__num" id="cd-secs">--</span><span class="urgency__sub">Sec</span></div>
       </div>
-      <span class="urgency__label">Only 18 seats · Lagos same-day return</span>
+      <a href="https://paystack.shop/pay/ggiuvqtvjp" class="urgency__price" target="_blank" rel="noopener noreferrer" aria-label="Pay donation of 5 million naira on Paystack">
+        <span class="urgency__price-label">Donation</span>
+        <span class="urgency__price-amount">₦5,000,000</span>
+      </a>
+      <span class="urgency__label">Only 18 seats · Lagos</span>
     </div>
   </div>
 
@@ -296,6 +300,18 @@
           <span class="hero__title-line2">Business</span>
           <span class="hero__title-line3">Mentorship</span>
         </h1>
+
+        <div class="price-pop" id="hero-price">
+          <div class="price-pop__inner">
+            <p class="price-pop__eyebrow">Investment · Per mentee</p>
+            <p class="price-pop__amount" aria-label="Five million naira">
+              <span class="price-pop__currency">₦</span>5,000,000
+            </p>
+            <p class="price-pop__note">Installments OK — full payment by <time datetime="2026-05-25">25 May 2026</time></p>
+            <a href="https://paystack.shop/pay/ggiuvqtvjp" class="price-pop__cta" target="_blank" rel="noopener noreferrer">Pay on Paystack</a>
+          </div>
+        </div>
+
         <div class="hero__date-block">
           <div class="hero__postponed">Confirmed Date</div>
           <div class="hero__date">27th May, 2026</div>
@@ -317,6 +333,10 @@
         </div>
       </div>
       <aside class="hero__card reveal">
+        <div class="hero__card-price" aria-hidden="true">
+          <span class="hero__card-price-label">From</span>
+          <span class="hero__card-price-amount">₦5M</span>
+        </div>
         <h2 class="hero__card-title">What You Walk Away With</h2>
         <ul class="hero__checklist">
           <li>
@@ -681,6 +701,19 @@
       </p>
     </div>
   </footer>
+
+  <!-- Sticky price bar (visible on landing, hides at payment sections) -->
+  <aside class="price-sticky" id="priceSticky" role="complementary" aria-label="Quick payment">
+    <div class="container price-sticky__inner">
+      <div class="price-sticky__text">
+        <span class="price-sticky__label">Donation</span>
+        <strong class="price-sticky__amount">₦5,000,000</strong>
+        <span class="price-sticky__meta">18 seats only</span>
+      </div>
+      <a href="https://paystack.shop/pay/ggiuvqtvjp" class="price-sticky__btn" target="_blank" rel="noopener noreferrer">Pay Now</a>
+      <button type="button" class="price-sticky__close" id="priceStickyClose" aria-label="Hide price reminder">&times;</button>
+    </div>
+  </aside>
 
   <script src="site-config.js" defer></script>
   <script src="script.js" defer></script>

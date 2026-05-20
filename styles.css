@@ -240,6 +240,279 @@ body::before {
   padding-bottom: 0.5rem;
 }
 
+.urgency__price {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.35rem 1rem;
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-700));
+  color: var(--navy-950);
+  border-radius: 2px;
+  line-height: 1.2;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
+  animation: urgencyPricePulse 2.5s var(--ease-out) 0.6s 2;
+}
+
+.urgency__price:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.45);
+}
+
+.urgency__price-label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.urgency__price-amount {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+@keyframes urgencyPricePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+  50% { box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.25); }
+}
+
+/* ——— Hero price pop (first screen) ——— */
+.price-pop {
+  margin-top: 1.25rem;
+  max-width: 22rem;
+  animation: pricePopIn 0.85s var(--ease-out) 0.15s both;
+}
+
+.price-pop__inner {
+  padding: 1.15rem 1.35rem;
+  background: linear-gradient(
+    145deg,
+    rgba(212, 175, 55, 0.22) 0%,
+    rgba(10, 22, 40, 0.92) 55%
+  );
+  border: 2px solid var(--gold-500);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    0 0 48px rgba(212, 175, 55, 0.12);
+}
+
+.price-pop__eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+  margin-bottom: 0.35rem;
+}
+
+.price-pop__amount {
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 8vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--white);
+  text-shadow: 0 2px 16px rgba(212, 175, 55, 0.35);
+}
+
+.price-pop__currency {
+  font-size: 0.55em;
+  color: var(--gold-400);
+  vertical-align: top;
+  margin-right: 0.1em;
+}
+
+.price-pop__note {
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.price-pop__cta {
+  display: inline-block;
+  margin-top: 0.85rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--white);
+  color: var(--navy-900);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.price-pop__cta:hover {
+  transform: translateY(-1px);
+  background: var(--gold-400);
+}
+
+@keyframes pricePopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  65% {
+    transform: translateY(-2px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero__card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.hero__card-price-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.hero__card-price-amount {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold-400);
+  line-height: 1;
+}
+
+/* ——— Sticky bottom price bar ——— */
+.price-sticky {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 998;
+  background: rgba(3, 8, 16, 0.96);
+  backdrop-filter: blur(12px);
+  border-top: 2px solid var(--gold-600);
+  padding: 0.65rem 0;
+  transform: translateY(100%);
+  transition: transform 0.45s var(--ease-out), opacity 0.35s;
+  pointer-events: none;
+}
+
+.price-sticky.is-visible {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.price-sticky.is-hidden,
+.price-sticky.is-dismissed {
+  transform: translateY(100%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.price-sticky__inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.price-sticky__text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.65rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.price-sticky__label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-500);
+}
+
+.price-sticky__amount {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+}
+
+.price-sticky__meta {
+  font-size: 0.72rem;
+  color: var(--muted);
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .price-sticky__meta {
+    width: auto;
+  }
+}
+
+.price-sticky__btn {
+  flex-shrink: 0;
+  padding: 0.65rem 1.15rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-700));
+  color: var(--navy-950);
+  white-space: nowrap;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.price-sticky__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+}
+
+.price-sticky__close {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border-gold);
+  color: var(--muted);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.price-sticky__close:hover {
+  color: var(--white);
+  border-color: var(--gold-500);
+}
+
+body.has-price-sticky {
+  padding-bottom: 4.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .price-pop,
+  .urgency__price {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .price-sticky {
+    transition: opacity 0.2s;
+  }
+}
+
 /* ——— Hero ——— */
 .hero {
   position: relative;

@@ -97,4 +97,63 @@
       el.classList.add("is-visible");
     });
   }
+
+  /* Sticky price bar — show on landing, hide near payment / if dismissed */
+  const priceSticky = document.getElementById("priceSticky");
+  const priceStickyClose = document.getElementById("priceStickyClose");
+  const STICKY_KEY = "pjment_price_sticky_dismissed";
+
+  function setStickyVisible(show) {
+    if (!priceSticky) return;
+    if (show && !sessionStorage.getItem(STICKY_KEY)) {
+      priceSticky.classList.add("is-visible");
+      priceSticky.classList.remove("is-hidden");
+      document.body.classList.add("has-price-sticky");
+    } else {
+      priceSticky.classList.remove("is-visible");
+      document.body.classList.remove("has-price-sticky");
+    }
+  }
+
+  if (priceSticky && !sessionStorage.getItem(STICKY_KEY)) {
+    requestAnimationFrame(function () {
+      setTimeout(function () {
+        setStickyVisible(true);
+      }, 400);
+    });
+
+    if (priceStickyClose) {
+      priceStickyClose.addEventListener("click", function () {
+        sessionStorage.setItem(STICKY_KEY, "1");
+        priceSticky.classList.add("is-dismissed");
+        setStickyVisible(false);
+      });
+    }
+
+    const hideTargets = ["#investment", "#register", ".price-card"];
+    if ("IntersectionObserver" in window) {
+      const hideIo = new IntersectionObserver(
+        function (entries) {
+          const anyVisible = entries.some(function (e) {
+            return e.isIntersecting && e.intersectionRatio > 0.15;
+          });
+          if (anyVisible) {
+            priceSticky.classList.add("is-hidden");
+            document.body.classList.remove("has-price-sticky");
+          } else if (!sessionStorage.getItem(STICKY_KEY)) {
+            priceSticky.classList.remove("is-hidden");
+            if (priceSticky.classList.contains("is-visible")) {
+              document.body.classList.add("has-price-sticky");
+            }
+          }
+        },
+        { threshold: [0, 0.15, 0.4] }
+      );
+      hideTargets.forEach(function (sel) {
+        document.querySelectorAll(sel).forEach(function (el) {
+          hideIo.observe(el);
+        });
+      });
+    }
+  }
 })();

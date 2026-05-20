@@ -1,0 +1,19 @@
+{
+  "name": "Private Jet Business Mentorship",
+  "short_name": "PJ Mentorship",
+  "description": "Exclusive private jet business mentorship with Dr. Stephen Akintayo — Lagos, 27 May 2026. 18 mentees only.",
+  "start_url": "/PJMENT/",
+  "display": "standalone",
+  "background_color": "#030810",
+  "theme_color": "#0a1628",
+  "lang": "en-NG",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/hero-flyer.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

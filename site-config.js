@@ -9,5 +9,6 @@ window.SITE_CONFIG = {
   region: "NG-LA",
   city: "Lagos",
   country: "Nigeria",
-  paymentUrl: "https://paystack.shop/pay/ggiuvqtvjp"
+  paymentUrl: "https://paystack.shop/pay/ggiuvqtvjp",
+  partialDonationUrl: "https://paystack.shop/pay/kzduh60wz3"
 };

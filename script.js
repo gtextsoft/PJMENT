@@ -63,15 +63,21 @@
   document.querySelectorAll(".faq-item__q").forEach(function (btn) {
     btn.addEventListener("click", function () {
       const item = btn.closest(".faq-item");
+      const answer = item.querySelector(".faq-item__a");
       const open = item.classList.contains("is-open");
       document.querySelectorAll(".faq-item").forEach(function (el) {
         el.classList.remove("is-open");
         const q = el.querySelector(".faq-item__q");
+        const a = el.querySelector(".faq-item__a");
         if (q) q.setAttribute("aria-expanded", "false");
+        if (a) a.style.maxHeight = "";
       });
       if (!open) {
         item.classList.add("is-open");
         btn.setAttribute("aria-expanded", "true");
+        if (answer) {
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        }
       }
     });
   });

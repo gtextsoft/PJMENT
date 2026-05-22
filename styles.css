@@ -20,6 +20,8 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --max: 1180px;
   --nav-h: 72px;
+  --page-gutter: clamp(1rem, 4vw, 1.25rem);
+  --urgency-h: 52px;
 }
 
 *,
@@ -33,6 +35,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 body {
@@ -80,8 +83,10 @@ ul {
 }
 
 .container {
-  width: min(100% - 2.5rem, var(--max));
+  width: 100%;
+  max-width: var(--max);
   margin-inline: auto;
+  padding-inline: var(--page-gutter);
 }
 
 /* Grain overlay */
@@ -391,9 +396,28 @@ body::before {
   transition: transform 0.2s, background 0.2s;
 }
 
+.price-pop__cta + .price-pop__cta {
+  margin-top: 0.5rem;
+}
+
+.price-pop__cta--secondary {
+  background: transparent;
+  color: var(--gold-400);
+  border: 1px solid var(--gold-500);
+}
+
+.price-pop__cta--secondary:hover {
+  background: rgba(212, 175, 55, 0.12);
+  color: var(--gold-300);
+}
+
 .price-pop__cta:hover {
   transform: translateY(-1px);
   background: var(--gold-400);
+}
+
+.price-pop__cta--secondary:hover {
+  background: rgba(212, 175, 55, 0.12);
 }
 
 @keyframes pricePopIn {
@@ -565,7 +589,8 @@ body.has-price-sticky {
 .hero {
   position: relative;
   min-height: 100vh;
-  padding-top: calc(var(--nav-h) + 52px);
+  min-height: 100svh;
+  padding-top: calc(var(--nav-h) + var(--urgency-h));
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -763,6 +788,8 @@ body.has-price-sticky {
   border-radius: 2px;
   cursor: pointer;
   transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn--primary {
@@ -858,6 +885,8 @@ body.has-price-sticky {
   line-height: 1.15;
   color: var(--white);
   max-width: 18ch;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .section__lead {
@@ -1178,6 +1207,17 @@ body.has-price-sticky {
   align-items: start;
 }
 
+.donation-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.price-card--partial {
+  border-color: var(--gold-500);
+  border-width: 1px;
+}
+
 @media (min-width: 900px) {
   .investment {
     grid-template-columns: 1fr 1fr;
@@ -1267,7 +1307,7 @@ body.has-price-sticky {
   margin-bottom: 1.5rem;
 }
 
-.price-card__install {
+.price-card__staged {
   display: inline-block;
   padding: 0.5rem 1rem;
   background: rgba(212, 175, 55, 0.15);
@@ -1407,7 +1447,7 @@ body.has-price-sticky {
 }
 
 .faq-item.is-open .faq-item__a {
-  max-height: 280px;
+  max-height: 600px;
   padding-bottom: 1.35rem;
 }
 
@@ -1599,4 +1639,437 @@ body.has-price-sticky {
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ——— Mobile & tablet responsive ——— */
+@media (max-width: 899px) {
+  :root {
+    --nav-h: 64px;
+    --urgency-h: 5.5rem;
+  }
+
+  .nav__cta {
+    display: none;
+  }
+
+  .nav__brand {
+    font-size: clamp(0.62rem, 2.8vw, 0.82rem);
+    letter-spacing: 0.08em;
+    max-width: calc(100% - 3.5rem);
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .nav__toggle {
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .urgency {
+    font-size: 0.72rem;
+    padding: 0.5rem 0;
+  }
+
+  .urgency__inner {
+    gap: 0.5rem 0.85rem;
+    padding-inline: 0.25rem;
+  }
+
+  .urgency__num {
+    font-size: 1.15rem;
+  }
+
+  .urgency__unit {
+    min-width: 2.1rem;
+  }
+
+  .urgency__price-amount {
+    font-size: 1rem;
+  }
+
+  .hero__content {
+    padding: 2rem 0 3rem;
+  }
+
+  .hero__title-line1 {
+    letter-spacing: 0.1em;
+  }
+
+  .hero__title-line3 {
+    -webkit-text-stroke-width: 1px;
+  }
+
+  .hero__slots {
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    padding: 0.65rem 1rem;
+  }
+
+  .price-pop {
+    max-width: 100%;
+  }
+
+  .price-pop__inner {
+    padding: 1rem 1.15rem;
+  }
+
+  .section__title {
+    max-width: none;
+  }
+
+  .section__lead {
+    font-size: 1rem;
+  }
+
+  .bonus .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 639px) {
+  :root {
+    --urgency-h: 7.25rem;
+  }
+
+  .hero__bg img {
+    object-position: 65% top;
+  }
+
+  .section {
+    padding: 3.25rem 0;
+  }
+
+  .section__header {
+    margin-bottom: 2rem;
+  }
+
+  .cta-final {
+    padding: 3.5rem 0;
+    padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .cta-final__title {
+    max-width: none;
+    padding-inline: 0.25rem;
+  }
+
+  .cta-final__sub {
+    font-size: 0.95rem;
+    padding-inline: 0.25rem;
+  }
+
+  .cta-final__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .cta-final__actions .btn {
+    width: 100%;
+    padding: 0.95rem 1.25rem;
+    font-size: 0.72rem;
+  }
+
+  .btn--paystack {
+    min-width: 0;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+    padding: 0.95rem 1.25rem;
+    font-size: 0.72rem;
+  }
+
+  .price-pop__cta {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+  }
+
+  .price-pop__cta + .price-pop__cta {
+    margin-top: 0.5rem;
+  }
+
+  .hero__card {
+    padding: 1.35rem 1.15rem;
+  }
+
+  .hero__card-title {
+    font-size: 1.3rem;
+  }
+
+  .hero__mentor-script {
+    font-size: 1.65rem;
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+
+  .stats {
+    margin-top: -1.5rem;
+  }
+
+  .stat {
+    padding: 1.15rem 0.75rem;
+  }
+
+  .stat__value {
+    font-size: 1.45rem;
+  }
+
+  .value-banner {
+    padding: 1.35rem 0;
+  }
+
+  .value-banner__sub {
+    font-size: 0.85rem;
+    padding-inline: 0.25rem;
+  }
+
+  .geo-card {
+    padding: 1.25rem;
+  }
+
+  .fact-sheet {
+    padding: 1.25rem 1rem;
+  }
+
+  .fact-sheet__list > div {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+
+  .fact-sheet__list dt {
+    margin-bottom: 0.1rem;
+  }
+
+  .exp-card {
+    padding: 1.35rem;
+  }
+
+  .timeline__item {
+    padding-left: 3rem;
+    padding-bottom: 2rem;
+  }
+
+  .timeline__title {
+    font-size: 1.2rem;
+  }
+
+  .bonus {
+    padding: 1.5rem 1.15rem;
+    text-align: center;
+  }
+
+  .bonus__title {
+    font-size: 1.4rem;
+  }
+
+  .price-card {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .price-card__staged {
+    display: block;
+    max-width: 100%;
+    line-height: 1.45;
+  }
+
+  .price-card__savings {
+    max-width: none;
+  }
+
+  .investment__list li {
+    padding: 0.9rem 1rem;
+    font-size: 0.88rem;
+  }
+
+  .faq-item__q {
+    font-size: 1.05rem;
+    padding: 1rem 0;
+    align-items: flex-start;
+  }
+
+  .faq-item__icon {
+    margin-top: 0.15rem;
+  }
+
+  .footer__grid {
+    text-align: center;
+  }
+
+  .footer__block a {
+    word-break: break-word;
+  }
+
+  .price-sticky {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .price-sticky__inner {
+    flex-wrap: wrap;
+    gap: 0.5rem 0.65rem;
+  }
+
+  .price-sticky__text {
+    flex: 1 1 auto;
+    min-width: min(100%, 12rem);
+  }
+
+  .price-sticky__meta {
+    font-size: 0.68rem;
+  }
+
+  .price-sticky__amount {
+    font-size: 1.2rem;
+  }
+
+  .price-sticky__btn {
+    flex: 1 1 auto;
+    min-width: 5.5rem;
+    padding: 0.7rem 0.85rem;
+    font-size: 0.68rem;
+  }
+
+  body.has-price-sticky {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .urgency__inner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .urgency__inner > .urgency__label:last-of-type {
+    display: none;
+  }
+
+  .urgency__timer {
+    order: 1;
+  }
+
+  .urgency__price {
+    order: 2;
+  }
+}
+
+@media (max-width: 399px) {
+  :root {
+    --nav-h: 60px;
+    --urgency-h: 6.5rem;
+  }
+
+  .nav__brand {
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+  }
+
+  .urgency__sep {
+    padding-bottom: 0.35rem;
+  }
+
+  .urgency__num {
+    font-size: 1rem;
+  }
+
+  .hero__title-line1 {
+    letter-spacing: 0.06em;
+    font-size: 1.65rem;
+  }
+
+  .hero__title-line2 {
+    font-size: clamp(2.75rem, 14vw, 3.5rem);
+  }
+
+  .hero__title-line3 {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+  }
+
+  .hero__date {
+    padding: 0.55rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  .badge {
+    font-size: 0.62rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .price-sticky__inner {
+    justify-content: space-between;
+  }
+
+  .price-sticky__btn {
+    width: 100%;
+    text-align: center;
+    order: 3;
+  }
+
+  .price-sticky__close {
+    order: 2;
+  }
+}
+
+/* Tablet: donation cards side by side when space allows */
+@media (min-width: 600px) and (max-width: 899px) {
+  .donation-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .donation-options .price-card {
+    padding: 1.35rem 1rem;
+  }
+
+  .donation-options .price-card__amount {
+    font-size: clamp(1.85rem, 4vw, 2.35rem);
+  }
+
+  .donation-options .btn {
+    font-size: 0.65rem;
+    padding: 0.85rem 0.65rem;
+  }
+}
+
+/* Mobile menu polish */
+@media (max-width: 899px) {
+  .mobile-menu {
+    justify-content: flex-start;
+    padding: calc(4.5rem + env(safe-area-inset-top, 0px)) var(--page-gutter)
+      calc(2rem + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.25rem;
+  }
+
+  .mobile-menu a:not(.btn) {
+    font-size: 1.35rem;
+  }
+
+  .mobile-menu .btn {
+    width: min(100%, 20rem);
+    margin-top: 0.5rem;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .mobile-menu__close {
+    top: calc(1rem + env(safe-area-inset-top, 0px));
+    right: var(--page-gutter);
+    min-width: 44px;
+    min-height: 44px;
+  }
 }

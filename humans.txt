@@ -1,4 +1,4 @@
-/* TEAM */
+﻿/* TEAM */
 Stephen Akintayo Foundation
 Dr. Stephen Akintayo — Host & Founder, SACI Holdings
 
@@ -8,4 +8,4 @@ Mentees and partners building Nigeria's business ecosystem
 /* SITE */
 Language: English (Nigeria)
 Standards: HTML5, CSS3, Schema.org JSON-LD
-Last update: 2026-05-20
+Last update: 2026-07-14

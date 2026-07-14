@@ -1,5 +1,5 @@
-(function () {
-  const DEADLINE = new Date("2026-05-25T23:59:59+01:00").getTime();
+﻿(function () {
+  const DEADLINE = new Date("2026-09-12T23:59:59+01:00").getTime();
 
   function pad(n) {
     return String(n).padStart(2, "0");
